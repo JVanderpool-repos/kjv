@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bible-verse-app"
+version = "1.0.0"
+description = "Daily Bible Verse API with KJV text, ensuring no repeats and chapter variation"
+authors = [{name="Bible Verse App", email="contact@example.com"}]
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = ["bible", "api", "fastapi", "kjv", "daily-verse"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Religion",
+  "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
+dependencies = [
+  "fastapi>=0.111.0",
+  "uvicorn[standard]>=0.30.0",
+  "sqlalchemy>=2.0.30",
+  "pydantic>=2.7.0",
+  "pydantic-settings>=2.4.0",
+  "alembic>=1.13.0",
+  "python-dotenv>=1.0.0",
+  "python-dateutil>=2.9.0.post0"
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0", "httpx>=0.25.0", "pytest-asyncio>=0.23.0"]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/bible-verse-app"
+Repository = "https://github.com/yourusername/bible-verse-app.git"
+Issues = "https://github.com/yourusername/bible-verse-app/issues"
+
+[tool.pytest.ini_options]
+pythonpath = ["app"]
+asyncio_mode = "auto"
+
+[tool.black]
+line-length = 100
+
+[tool.setuptools]
+packages = ["app"]
