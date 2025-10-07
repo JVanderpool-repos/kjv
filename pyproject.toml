@@ -14,7 +14,6 @@ keywords = ["bible", "api", "fastapi", "kjv", "daily-verse"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Intended Audience :: Developers",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
@@ -35,6 +34,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0.0", "httpx>=0.25.0", "pytest-asyncio>=0.23.0"]
+gui = ["requests>=2.31.0"]
 
 [project.urls]
 Homepage = "https://github.com/yourusername/bible-verse-app"
@@ -42,8 +42,24 @@ Repository = "https://github.com/yourusername/bible-verse-app.git"
 Issues = "https://github.com/yourusername/bible-verse-app/issues"
 
 [tool.pytest.ini_options]
-pythonpath = ["app"]
-asyncio_mode = "auto"
+pythonpath = [".", "app"]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "gui: marks tests that require GUI/display",
+    "api: marks tests for API functionality",
+    "database: marks tests for database functionality"
+]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings"
+]
 
 [tool.black]
 line-length = 100
